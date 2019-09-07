@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  apt-cacher-ng:
+    image: raackley/apt-cacher-ng
+    container_name: apt-cacher-ng
+    read_only: true
+    ports:
+      - "3142:3142"
+    volumes:
+      - ./run/data/apt-cacher-ng_var_cache_apt-cacher-ng:/var/cache/apt-cacher-ng:rw
+      - apt-cacher-ng_var_log_apt-cacher-ng:/var/log/apt-cacher-ng:rw
+    tmpfs:
+      - /run/apt-cacher-ng:rw
+
+volumes:
+  apt-cacher-ng_var_log_apt-cacher-ng:
